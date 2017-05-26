@@ -1,6 +1,7 @@
 package mybaties01;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import g.mapper.UserMapper;
+import g.pojo.CustomOrders;
+import g.pojo.Orders;
+import g.pojo.QueryVo;
 import g.pojo.User;
 
 /**
@@ -68,5 +72,94 @@ public class UserMapperTest {
 		mapper.insertUser(user);
 		
 		openSession.commit();
+	}
+	
+	@Test
+	public void testFindUserByVo() throws Exception{
+		SqlSession openSession = factory.openSession();
+		//通过getMapper方法来实例化接口
+		UserMapper mapper = openSession.getMapper(UserMapper.class);
+		
+		QueryVo vo = new QueryVo();
+		User user = new User();
+		user.setUsername("王");
+		user.setSex("1");
+		vo.setUser(user);
+		
+		List<User> list = mapper.findUserbyVo(vo);
+		System.out.println(list);
+		
+	}
+	
+	@Test
+	public void testFindUserCount() throws Exception{
+		SqlSession openSession = factory.openSession();
+		//通过getMapper方法来实例化接口
+		UserMapper mapper = openSession.getMapper(UserMapper.class);
+		
+		Integer count = mapper.findUserCount();
+		System.out.println("=====" + count);
+	}
+	
+	@Test
+	public void testFindUserbyUserNameAndSex() throws Exception{
+		SqlSession openSession = factory.openSession();
+		//通过getMapper方法来实例化接口
+		UserMapper mapper = openSession.getMapper(UserMapper.class);
+		
+		User user = new User();
+		user.setUsername("王");
+		user.setSex("1");
+		
+		List<User> list = mapper.findUserByUserNameAndSex(user);
+		
+		System.out.println(list);
+	}
+	
+	@Test
+	public void testFindUserbyIds() throws Exception{
+		SqlSession openSession = factory.openSession();
+		//通过getMapper方法来实例化接口
+		UserMapper mapper = openSession.getMapper(UserMapper.class);
+		
+		QueryVo vo = new QueryVo();
+		List<Integer> ids = new ArrayList<Integer>();
+		ids.add(1);
+		ids.add(16);
+		ids.add(22);
+		vo.setIds(ids);
+		
+		List<User> list = mapper.findUserByIds(vo);
+		System.out.println(list);
+	}
+	
+	@Test
+	public void testFindOrdersAndUser() throws Exception{
+		SqlSession openSession = factory.openSession();
+		//通过getMapper方法来实例化接口
+		UserMapper mapper = openSession.getMapper(UserMapper.class);
+		
+		List<CustomOrders> list = mapper.findOrdersAndUser1();
+		System.out.println(list);
+	}
+	
+	@Test
+	public void testFindOrdersAnduUser2() throws Exception{
+		SqlSession openSession = factory.openSession();
+		//通过getMapper方法来实例化接口
+		UserMapper mapper = openSession.getMapper(UserMapper.class);
+		
+		List<Orders> list = mapper.findOrdersAndUser2();
+		System.out.println(list);
+	}
+	
+	@Test
+	public void testFindUserAndOrders() throws Exception{
+		SqlSession openSession = factory.openSession();
+		//通过getMapper方法来实例化接口
+		UserMapper mapper = openSession.getMapper(UserMapper.class);
+		
+		List<User> list = mapper.findUserAndOrders();
+		System.out.println(list);
 	}
 }

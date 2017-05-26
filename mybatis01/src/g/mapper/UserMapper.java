@@ -2,6 +2,9 @@ package g.mapper;
 
 import java.util.List;
 
+import g.pojo.CustomOrders;
+import g.pojo.Orders;
+import g.pojo.QueryVo;
 import g.pojo.User;
 
 /**
@@ -17,4 +20,18 @@ public interface UserMapper {
 	public List<User> findUserByUserName(String userName);
 	
 	public void insertUser(User user);
+	
+	public  List<User> findUserbyVo(QueryVo vo);
+	
+	public Integer findUserCount();
+	
+	public List<User> findUserByUserNameAndSex(User user);
+	
+	public List<User> findUserByIds(QueryVo vo);
+	
+	public List<CustomOrders> findOrdersAndUser1() ;
+	
+	public List<Orders> findOrdersAndUser2();
+	
+	public List<User> findUserAndOrders();
 }

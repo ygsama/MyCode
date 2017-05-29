@@ -1,5 +1,7 @@
 package g.vo;
 
+import java.util.List;
+
 import g.pojo.Items;
 
 public class QueryVo {
@@ -7,6 +9,28 @@ public class QueryVo {
 	private Items items;
 	//订单对象...
 	//用户对象....
+
+	//批量删除使用
+	private Integer[] ids;
+	
+	//批量修改使用
+	private List<Items> itemsList;
+	
+	public Integer[] getIds() {
+		return ids;
+	}
+
+	public void setIds(Integer[] ids) {
+		this.ids = ids;
+	}
+
+	public List<Items> getItemsList() {
+		return itemsList;
+	}
+
+	public void setItemsList(List<Items> itemsList) {
+		this.itemsList = itemsList;
+	}
 
 	public Items getItems() {
 		return items;
